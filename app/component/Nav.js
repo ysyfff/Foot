@@ -7,7 +7,7 @@ export default class Nav extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentRoute: ''
+            showNav: true
         }
         this.renderByRoute = false;
         this.hasInited = false;
@@ -23,7 +23,6 @@ export default class Nav extends Component {
         const renderNavBarMap = {};
         const navigatorPara = Object.assign({}, this.props.dataSource);
         const navigationBarPara = Object.assign({}, navigatorPara.route[navigatorPara.initialRoute].NavBar);
-
         for(let route in navigatorPara.route) {
             renderSceneMap[route] = navigatorPara.route[route].renderScene;
             renderNavBarMap[route] = Object.assign({}, navigatorPara.route[route].NavBar);

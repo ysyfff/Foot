@@ -28,8 +28,9 @@ export default class PathTabBar extends Component {
                     iconName: 'ios-paw-outline', //flag
                     selectedIconName: 'ios-paw',
                     onPress: () => {
-                        console.log('what??')
+                        // console.log('what??')
                         me.props.navigators.resetTo({ident: 'Map'})
+                        // me.props.navigators.immediatelyResetRouteStack([]);
                     },
                     renderedContent: <Foot navigators={me.props.navigators}/>
                 },
