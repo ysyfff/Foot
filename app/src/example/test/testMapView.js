@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {MapView, View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native'
-
+import Btn from '../../../component/Btn'
 class AnnotationExample extends Component {
     constructor(props) {
         super(props)
@@ -111,6 +111,11 @@ export class Callout extends Component {
     render() {
         return (
             <View style={{marginTop: 15}}>
+                <View style={{position: 'absolute', left: -10, top: -100,zIndex: 2}}>
+                    <Btn onPress={() => {alert('还好')}} style={{margin: 0}}>
+                        你好
+                    </Btn>
+                </View>
                 <Text>
                     Callout
                 </Text>
