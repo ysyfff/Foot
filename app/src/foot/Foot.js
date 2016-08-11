@@ -3,14 +3,27 @@ import {Text, View, MapView} from 'react-native'
 import ViewContainer from '../common/ViewContainer'
 // import MapView from 'react-native-maps'
 
+import {MapViewExample, LocationFollow, Callout} from '../example/test/testMapView'
+
 export default class Foot extends Component {
     render() {
-        console.log(MapView)
         return (
-          <MapView
-            style={{flex:1, marginTop: 62}}
-            showsUserLocation={true}
-          />
+            <ViewContainer>
+                <MapViewExample />
+                <LocationFollow />
+                <Callout />
+            </ViewContainer>
         )
     }
+    // render() {
+    //     console.log(MapView)
+    //     return (
+    //       <MapView
+    //         style={{flex:1, marginTop: 62}}
+    //         showsUserLocation={true}
+    //         followUserLocation={true}
+    //         legalLabelInsets={{bottom: 23}}
+    //       />
+    //     )
+    // }
 }
