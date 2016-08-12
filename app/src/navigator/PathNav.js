@@ -11,7 +11,11 @@ import Basic from '../user/info/basic/Basic'
 export default class PathNav extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            showNav: true
+        }
     }
+    
     render() {
         const NavDataSource = {
             initialRoute: 'Myself',
@@ -71,7 +75,9 @@ export default class PathNav extends Component {
         }
 
         return (
-            <Nav dataSource={NavDataSource} />
+            <If v={this.state.showNav}>
+                <Nav dataSource={NavDataSource} />
+            </If>
         )
     }
 }
