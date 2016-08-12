@@ -9,6 +9,8 @@
 * componentWillUpdate        如果组件状态或者属性改变，并且上面的 shouldComponentUpdate(...) 返回为 true ，就会开始准更新组件
 * componentDidUpdate         调用了 render() 更新完成界面之后
 * componentWillUnmount       当组件要被从界面上移除的时候
+![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/1.pic.jpg)
+![image](./doc/1.pic.jpg)
 
 ## Component
 ### Done
