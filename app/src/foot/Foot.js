@@ -3,7 +3,7 @@ import {Text, View, MapView} from 'react-native'
 import ViewContainer from '../common/ViewContainer'
 // import MapView from 'react-native-maps'
 
-import {MapViewExample, LocationFollow, Callout} from '../example/test/testMapView'
+import {MapViewExample, LocationFollow, Callout, Overlay} from '../example/test/testMapView'
 
 export default class Foot extends Component {
     render() {
@@ -11,6 +11,7 @@ export default class Foot extends Component {
             <ViewContainer>
                 <MapViewExample />
                 <LocationFollow />
+                <Overlay />
                 <Callout />
             </ViewContainer>
         )

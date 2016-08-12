@@ -138,7 +138,38 @@ export class Callout extends Component {
     }
 }
 
-
+export class Overlay extends Component {
+    render() {
+        return(
+            <View style={{marginTop: 15}}>
+                <Text>
+                    Overlay
+                </Text>
+                <MapView
+                    style={styles.map}
+                    region={{
+                      latitude: 39.06,
+                      longitude: -95.22,
+                    }}
+                    overlays={[{
+                      coordinates:[
+                        {latitude: 32.47, longitude: -107.85},
+                        {latitude: 33.47, longitude: -106.85},
+                        {latitude: 33.47, longitude: -105.85},
+                        {latitude: 33.47, longitude: -104.85},
+                        {latitude: 34.47, longitude: -104.85},
+                        {latitude: 35.47, longitude: -104.85},
+                        {latitude: 36.47, longitude: -103.85},
+                        {latitude: 40.47, longitude: -102.85},
+                      ],
+                      strokeColor: '#f007',
+                      lineWidth: 5,
+                    }]}
+                  />
+            </View>
+        )
+    }
+}
 
 var styles = StyleSheet.create({
   map: {
