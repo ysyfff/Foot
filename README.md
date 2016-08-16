@@ -32,7 +32,15 @@
   * Answer: Navigator的切换会触发renderScene以及NavigationBar中的LeftButton,RightButton,Title函数，使用回调中的route就可以解决内容卡顿的问题
 
 ***
-* Navigator与TabBar的配合使用 `navTabCombinePro`
+* Navigator与TabBar的配合使用 `navTabCombinePro` [这是一个值得思考的问题]
   * Answer: 以Navigator作为master，tab的点击触发Navigator的resetTo方法，resetTo所干的事情就是返回一个新的tab(这个tab就是下次要展示的tab标签的tab)
+
+***
+* 如何动态控制Navigator的显示与隐藏(见证数据的流动) [这是一个思考了很久的问题]
+  * Answer:
+    * 通过动态控制Navigator的navigationBar属性就可动态控制Navigator的显示与隐藏(通过props属性动态控制)
+    * `props` 的值必定要与 `state` 绑定   `<Nav dataSource={NavDataSource} showNav={this.state.showNav}/>`
+    * 跨组件的数据流动 `<PathTabBar navigators={navigators} initialTab='我' nav={me}/>`
+    * 及跨组价的 `setState` `me.props.nav.setState({showNav: false})`
 
 ***
