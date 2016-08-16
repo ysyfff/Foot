@@ -6,7 +6,7 @@ import Skin from '../common/Skin'
 
 import PathTabBar from '../tabbar/PathTabBar'
 import Basic from '../user/info/basic/Basic'
-
+import If from '../../component/If'
 
 export default class PathNav extends Component {
     constructor(props) {
@@ -15,15 +15,18 @@ export default class PathNav extends Component {
             showNav: true
         }
     }
-    
+    componentDidMount() {
+        console.log('mount')
+    }
     render() {
+        let me = this;
         const NavDataSource = {
             initialRoute: 'Myself',
             route: {
                 Myself: {
                     renderScene: function(route, navigators) {
                         return (
-                            <PathTabBar navigators={navigators} initialTab='我'/>
+                            <PathTabBar navigators={navigators} initialTab='我' nav={me}/>
                         )
                     },
                     NavBar: {
@@ -39,7 +42,7 @@ export default class PathNav extends Component {
                 },
                 'Map': {
                     renderScene: function(route, navigators) {
-                        return <PathTabBar navigators={navigators} initialTab='足迹' />;
+                        return <PathTabBar navigators={navigators} initialTab='足迹' nav={me}/>;
                     },
                     NavBar: {
                         routeMapper: {
@@ -75,9 +78,7 @@ export default class PathNav extends Component {
         }
 
         return (
-            <If v={this.state.showNav}>
-                <Nav dataSource={NavDataSource} />
-            </If>
+            <Nav dataSource={NavDataSource} showNav={this.state.showNav}/>
         )
     }
 }

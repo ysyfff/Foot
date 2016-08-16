@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {MapView, View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native'
 import Btn from '../../../component/Btn'
 import If from '../../../component/If'
+
 class AnnotationExample extends Component {
     constructor(props) {
         super(props)
@@ -94,7 +95,7 @@ export class MapViewExample extends Component {
 export class LocationFollow extends Component {
     render() {
         return (
-            <View style={{marginTop: 15}}>
+            <View>
                 <Text>
                     showsUserLocation + followUserLocation
                 </Text>
@@ -116,10 +117,14 @@ export class Callout extends Component {
         }
     }
     render() {
+        let me = this;
         return (
             <View style={{marginTop: 15}}>
-                <View style={{position: 'absolute', left: -10, top: -100,zIndex: 2}}>
-                    <Btn onPress={() => {this.setState({showHello: !this.state.showHello})}} style={{margin: 0}}>
+                <View style={{position: 'absolute', left: -10, top: 20,zIndex: 2}}>
+                    <Btn onPress={() => {
+                        me.setState({showHello: !this.state.showHello})
+                        me.props.nav.setState({showNav: !me.props.nav.state.showNav})
+                    }}  style={{margin: 0}}>
                         你好
                     </Btn>
                 </View>

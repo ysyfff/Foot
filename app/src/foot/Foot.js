@@ -8,11 +8,11 @@ import {MapViewExample, LocationFollow, Callout, Overlay} from '../example/test/
 export default class Foot extends Component {
     render() {
         return (
-            <ViewContainer>
-                <MapViewExample />
+            <ViewContainer style={{backgroundColor: 'green'}} noNav={true}>
                 <LocationFollow />
                 <Overlay />
-                <Callout />
+                <Callout nav={this.props.nav} />
+                <MapViewExample />
             </ViewContainer>
         )
     }

@@ -32,7 +32,7 @@ export default class PathTabBar extends Component {
                         me.props.navigators.resetTo({ident: 'Map'})
                         // me.props.navigators.immediatelyResetRouteStack([]);
                     },
-                    renderedContent: <Foot navigators={me.props.navigators}/>
+                    renderedContent: <Foot navigators={me.props.navigators} nav={me.props.nav}/>
                 },
                 {
                     title: '我',
@@ -40,7 +40,6 @@ export default class PathTabBar extends Component {
                     selectedIconName:'ios-person',
                     defaultSelected: true,
                     onPress: () => {
-                        // debugger
                         me.props.navigators.resetTo({ident: 'Myself'})
                     },
                     renderedContent: <Info navigators={me.props.navigators}/>

@@ -6,17 +6,11 @@ let _currentRoute = '';
 export default class Nav extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            showNav: true
-        }
-        this.renderByRoute = false;
-        this.hasInited = false;
     }
     render() {
         return this._trans();
     }
     componentDidMount() {
-        console.log('oo')
     }
     _trans() {
         const renderSceneMap = {};
@@ -90,14 +84,16 @@ export default class Nav extends Component {
                 }
             }
         }
+        console.log(this.props)
 
+        // navigationBar应该是可配的才对，通过this.props.showNav来进行适配
         return (
             <Navigator
                 {...navigatorPara}
-                navigationBar={
+                navigationBar ={ this.props.showNav ? (
                     <Navigator.NavigationBar
                         {...navigationBarPara}
-                    />
+                    />) : null
                 }
             />
         )
