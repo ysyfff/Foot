@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react'
-import { StyleSheet, TabBarIOS } from 'react-native'
+import { StyleSheet, TabBarIOS, View } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -47,7 +47,7 @@ export default class TabBar extends Component {
         };
 
         return (
-            <TabBarIOS {...tabBarProps}>
+            <TabBarIOS {...tabBarProps} >
                 {tabBarItemsProps.map(createBarItem)}
             </TabBarIOS>
         );

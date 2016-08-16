@@ -16,7 +16,7 @@ export default class Info extends Component {
         var me = this;
         var data = {
             custom: {
-                style: [{backgroundColor: '#f8f8f8'}]
+                // style: [{backgroundColor: '#f8f8f8'}]
             },
             sets: [{
                     custom: {
@@ -65,7 +65,9 @@ export default class Info extends Component {
                                 }
                             },
                             onPress: (event) => {
-
+                                me.props.navigators.push({
+                                    ident: 'Myself.historyInfo'
+                                })
                             }
                         }
                     }]
@@ -194,6 +196,9 @@ export default class Info extends Component {
                 <NavBar dataSource={data} />
             </ViewContainer>
         )
+        // return (
+        //     <TabBarExample />
+        // )
     }
 }
 

@@ -16,7 +16,6 @@ export default class Basic extends Component {
         this.setState({disableRight: true})
     }
     render() {
-        console.log('66')
         return (
             <ViewContainer>
                 <Btn style={[{backgroundColor: 'red'}]}

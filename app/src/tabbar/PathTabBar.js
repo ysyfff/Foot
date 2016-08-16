@@ -30,6 +30,7 @@ export default class PathTabBar extends Component {
                     onPress: () => {
                         // console.log('what??')
                         me.props.navigators.resetTo({ident: 'Map'})
+                        me.props.nav.setState({showNav: false})
                         // me.props.navigators.immediatelyResetRouteStack([]);
                     },
                     renderedContent: <Foot navigators={me.props.navigators} nav={me.props.nav}/>
@@ -41,6 +42,7 @@ export default class PathTabBar extends Component {
                     defaultSelected: true,
                     onPress: () => {
                         me.props.navigators.resetTo({ident: 'Myself'})
+                        me.props.nav.setState({showNav: true});
                     },
                     renderedContent: <Info navigators={me.props.navigators}/>
                 },

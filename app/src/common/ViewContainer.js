@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#f8f8f8',
     },
     container: {
-        marginTop: 64
+        marginTop: 84
     }
 })
