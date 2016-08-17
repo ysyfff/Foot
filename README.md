@@ -45,6 +45,6 @@
     * 通过动态控制Navigator的navigationBar属性就可动态控制Navigator的显示与隐藏(通过props属性动态控制)
     * `props`的值必定要与`state`绑定   `<Nav dataSource={NavDataSource} showNav={this.state.showNav}/>`
     * 跨组件的数据流动 `<PathTabBar navigators={navigators} initialTab='我' nav={me}/>`
-    * 跨组价的`setState` `me.props.nav.setState({showNav: false})`
+    * 跨组件的`setState` `me.props.nav.setState({showNav: false})`
 
 ***
