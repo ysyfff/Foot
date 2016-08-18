@@ -33,6 +33,8 @@
     * JSX中会处理数组对象，将数组元素作为循环的子节点
 
 ***
+===
+---
 
 ### Higher
 * Navigator切换的时候内容的变化时出现卡顿(包括LeftButton, RightButton, Title等) `titleDelayRefreshPro`
