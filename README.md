@@ -1,8 +1,6 @@
 # Path
-***
 
 ## Base
-***
 ### LifeCycle
 * `componentWillMount`         准备加载组件
 * `componentDidMount`          在组件第一次绘制之后
@@ -15,7 +13,6 @@
 ![image](./doc/1.pic.jpg)
 
 ## Component
-***
 ### Done
 * `TabBar`
 * `NavBar`
@@ -30,7 +27,6 @@
 
 
 ## Problem
-***
 ### Lower
 * 如何循环多个子节点`<TabBarIOS> <TabBarIOS.Item /> <TabBarIOS.Item /> ... </TabBarIOS>`
   * Answer:
