@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {Text, View, MapView, AsyncStorage} from 'react-native'
 import ViewContainer from '../common/ViewContainer'
+import Store from '../common/Store'
 // import MapView from 'react-native-maps'
 
 import {MapViewExample, LocationFollow, Callout, Overlay} from '../example/test/testMapView'
-import _ from 'lodash'
 
+console.log(Store, 'll')
 export default class Foot extends Component {
     // render() {
     //     return (
@@ -22,8 +23,8 @@ export default class Foot extends Component {
 
     }
     render() {
-        var key = 'point333';
-        this._setPoint(key, [{a: 1, b: 2}], (err, val) => {
+        var key = 'point334';
+        Store.setPoint(key, [{a: 1, b: 2}], (err, val) => {
             AsyncStorage.getItem(key, (err, val) => {
                 console.log(val)
             })
@@ -40,16 +41,5 @@ export default class Foot extends Component {
             </View>
         )
     }
-    _getPoint(key: String, callback = ()=>{}: Function) {
-        AsyncStorage.get(key, callback);
-    }
-    _setPoint(key: String, data: [{a: 1,b:2}], callback = ()=>{}: Function) {
-        AsyncStorage.getItem(key, (err, val) => {
-            const point = val == null ? data : _.concat(JSON.parse(val), data);
 
-            AsyncStorage.removeItem(key, (err) => {
-                AsyncStorage.setItem(key, JSON.stringify( point ), callback);
-            });
-        });
-    }
 }
