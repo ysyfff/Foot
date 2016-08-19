@@ -1,22 +1,37 @@
 import React, {Component} from 'react'
-import {Text, View, AsyncStorage} from 'react-native'
+import {Text, View, AsyncStorage, MapView} from 'react-native'
 // import MapView from 'react-native-maps'
-import MapView from 'react-native-maps'
+// import MapView from 'react-native-maps'
 import _ from 'lodash'
-
+import Btn from '../../../component/Btn'
+var cacheRegion = {};
 export default class RNMapViews extends Component {
     constructor(props) {
         super(props)
         this.state = {
             region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: 39.06,
+                longitude: -95.22,
                 latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                longitudeDelta: 0.0922,
             }
         }
     }
-    onRegionChange(region) {
+    _onRegionChangeComplete(region) {
+        // debugger
+        // this.setState({region})
+        cacheRegion = _.assign({}, region);
+    }
+    _zoomIn() {
+        let region = _.assign({}, cacheRegion);
+        region.latitudeDelta += 0.05;
+        region.longitudeDelta += 0.05;
+        this.setState({region})
+    }
+    _zoomOut() {
+        let region = _.assign({}, cacheRegion);
+        region.latitudeDelta -= 0.05;
+        region.longitudeDelta -= 0.05;
         this.setState({region})
     }
     render() {
@@ -26,9 +41,36 @@ export default class RNMapViews extends Component {
                 <MapView
                     style={{flex: 1}}
                     showsUserLocation={true}
+                    followsUserLocation={true}
                     region={this.state.region}
-                    onRegionChange={this.onRegionChange.bind(this)}
+                    overlays={[{
+                      coordinates:[
+                        {latitude: 32.47, longitude: -107.85},
+                        {latitude: 33.47, longitude: -106.85},
+                        {latitude: 33.47, longitude: -105.85},
+                        {latitude: 33.47, longitude: -104.85},
+                        {latitude: 34.47, longitude: -104.85},
+                        {latitude: 35.47, longitude: -104.85},
+                        {latitude: 36.47, longitude: -103.85},
+                        {latitude: 40.47, longitude: -102.85},
+                      ],
+                      strokeColor: '#f007',
+                      lineWidth: 5,
+                    }]}
+                    onRegionChangeComplete={this._onRegionChangeComplete.bind(this)}
                   />
+                  <View style={{position: 'absolute', bottom: 100}}>
+                      <View>
+                        <Btn onPress={this._zoomOut.bind(this)}>
+                            大
+                        </Btn>
+                      </View>
+                      <View>
+                        <Btn onPress={this._zoomIn.bind(this)}>
+                            小
+                        </Btn>
+                      </View>
+                  </View>
             </View>
         )
     }
