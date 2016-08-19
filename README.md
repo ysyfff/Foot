@@ -32,6 +32,10 @@
   * Answer:
     * JSX中会处理数组对象，将数组元素作为循环的子节点
 
+* 安装`react-native-maps`后遇到了build failed错误，怎么处理？
+  * Answer:
+    * 首先在issue里面查找答案(往往能找到最佳答案，这也是最优途径)
+
 ===
 
 ### Higher
