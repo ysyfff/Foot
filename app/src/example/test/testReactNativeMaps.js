@@ -4,6 +4,7 @@ import {Text, View, AsyncStorage, MapView} from 'react-native'
 // import MapView from 'react-native-maps'
 import _ from 'lodash'
 import Btn from '../../../component/Btn'
+import Geo from './testGeolocation'
 var cacheRegion = {};
 export default class RNMapViews extends Component {
     constructor(props) {
@@ -71,6 +72,7 @@ export default class RNMapViews extends Component {
                         </Btn>
                       </View>
                   </View>
+                  <Geo />
             </View>
         )
     }
