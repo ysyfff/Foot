@@ -16,6 +16,10 @@ export default class PathTabBar extends Component {
             personCount: 0
         }
     }
+    componentDidMount() {
+        //Map刚初始化的时候就不showNav了
+        this.props.initialTab=='足迹' && this.props.nav.setState({showNav: false})
+    }
     _createTabBar() {
         var me = this
         return {

@@ -3,7 +3,7 @@ import {Text, View, AsyncStorage} from 'react-native'
 import ViewContainer from '../common/ViewContainer'
 // import MapView from 'react-native-maps'
 import MapView from 'react-native-maps'
-import {MapViewExample, LocationFollow, Callout, Overlay} from '../example/test/testMapView'
+import RNMapViews from '../example/test/testReactNativeMaps'
 import _ from 'lodash'
 
 //Test MapView Example
@@ -25,15 +25,7 @@ export default class Foot extends Component {
         //MapView不能套在ViewContainer中，否则导致MapView的flex：1时，高度无法伸展(应该是scroll属性导致)
         return (
             <View style={{flex: 1}}>
-                <MapView
-                    style={{flex: 1}}
-                    initialRegion={{
-                      latitude: 37.78825,
-                      longitude: -122.4324,
-                      latitudeDelta: 0.0922,
-                      longitudeDelta: 0.0421,
-                    }}
-                  />
+                <RNMapViews />
             </View>
         )
     }
