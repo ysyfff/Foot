@@ -35,6 +35,35 @@ export default class RNMapViews extends Component {
         region.longitudeDelta -= 0.05;
         this.setState({region})
     }
+    _showCurrentPosition() {
+        // position = {
+        //     coords: {
+        //         speed: '-1',
+        //         longitude: 'xx',
+        //         latitude: 'xx',
+        //         accuracy: '',
+        //         heading: '-1',
+        //         altitude: 'xx',
+        //         altitudeAccuracy: '',
+        //     },
+        //     timestamp: 'xx'
+        // }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let region = _.assign({}, this.state.region);
+                let curRegion = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                }
+
+                this.setState({
+                    region: _.assign(region, curRegion)
+                });
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        )
+    }
     render() {
         //MapView不能套在ViewContainer中，否则导致MapView的flex：1时，高度无法伸展(应该是scroll属性导致)
         return (
@@ -62,6 +91,11 @@ export default class RNMapViews extends Component {
                   />
                   <View style={{position: 'absolute', bottom: 100}}>
                       <View>
+                        <Btn onPress={this._showCurrentPosition.bind(this)}>
+                            位
+                        </Btn>
+                      </View>
+                      <View>
                         <Btn onPress={this._zoomOut.bind(this)}>
                             大
                         </Btn>
@@ -72,7 +106,6 @@ export default class RNMapViews extends Component {
                         </Btn>
                       </View>
                   </View>
-                  <Geo />
             </View>
         )
     }
