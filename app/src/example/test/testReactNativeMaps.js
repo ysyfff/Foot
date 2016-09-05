@@ -5,7 +5,10 @@ import {Text, View, AsyncStorage, MapView} from 'react-native'
 import _ from 'lodash'
 import Btn from '../../../component/Btn'
 import Geo from './testGeolocation'
-var cacheRegion = {};
+var cache = {
+    level: 16,
+    region: {}
+};
 
 const LEVEL_DEGREE = {
     1: 180, //whole world
@@ -38,26 +41,29 @@ export default class RNMapViews extends Component {
                 longitude: 116.29967273616768,
                 latitudeDelta: 0.005,
                 longitudeDelta: 0.005,
-            },
-            level: 16
+            }
         }
     }
     _onRegionChangeComplete(region) {
         // debugger
         // this.setState({region})
-        cacheRegion = _.assign({}, region);
+        cache.region = _.assign({}, region);
     }
     _zoomIn() {
-        let region = _.assign({}, cacheRegion);
-        region.latitudeDelta += 0.05;
-        region.longitudeDelta += 0.05;
-        this.setState({region})
+        if(cache.level > 1){
+            cache.level --;
+            let region = _.assign({}, cache.region);
+            region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
+            this.setState({region});
+        }
     }
     _zoomOut() {
-        let region = _.assign({}, cacheRegion);
-        region.latitudeDelta -= 0.05;
-        region.longitudeDelta -= 0.05;
-        this.setState({region})
+        if(cache.level < 19) {
+            cache.level ++;
+            let region = _.assign({}, cache.region);
+            region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
+            this.setState({region});
+        }
     }
     _showCurrentPosition() {
         // position = {
