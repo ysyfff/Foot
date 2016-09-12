@@ -11,6 +11,7 @@ var cache = {
 };
 
 const LEVEL_DEGREE = {
+    0: 360,
     1: 180, //whole world
     2: 90,
     3: 45,
@@ -30,6 +31,7 @@ const LEVEL_DEGREE = {
     17: 0.003,
     18: 0.001,
     19: 0.0005,
+    20: 0
 };
 const BASE_M_PIXEL = 0.298;
 export default class RNMapViews extends Component {
@@ -39,8 +41,8 @@ export default class RNMapViews extends Component {
             region: {
                 latitude: 39.97647153065555,
                 longitude: 116.29967273616768,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005,
+                latitudeDelta: 0.004,
+                longitudeDelta: 0.004,
             }
         }
     }
@@ -49,20 +51,36 @@ export default class RNMapViews extends Component {
         // this.setState({region})
         cache.region = _.assign({}, region);
     }
+    _getLevel() {
+        let latitudeDelta = this.state.region.latitudeDelta;
+        let level = 1;
+        _.forIn(LEVEL_DEGREE, (value, key) => {
+            if(latitudeDelta == value) {
+                level = key - 0;
+            }else if(latitudeDelta < value && latitudeDelta > LEVEL_DEGREE[key - 0 + 1]) {
+                level = key - 0 + 0.5;
+            }
+        });
+        return level;
+    }
+    _zoomViaLevel(action) {
+        let region = _.assign({}, cache.region);
+        cache.level = action == 'in' ? Math.ceil(cache.level) : Math.floor(cache.level);
+        region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
+        this.setState({region});
+    }
     _zoomIn() {
+        cache.level = this._getLevel();
         if(cache.level > 1){
-            cache.level --;
-            let region = _.assign({}, cache.region);
-            region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
-            this.setState({region});
+            cache.level -= 1;
+            this._zoomViaLevel('in');
         }
     }
     _zoomOut() {
+        cache.level = this._getLevel();
         if(cache.level < 19) {
-            cache.level ++;
-            let region = _.assign({}, cache.region);
-            region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
-            this.setState({region});
+            cache.level += 1;
+            this._zoomViaLevel('out');
         }
     }
     _showCurrentPosition() {
