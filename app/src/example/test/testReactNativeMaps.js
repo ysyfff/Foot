@@ -41,8 +41,8 @@ export default class RNMapViews extends Component {
             region: {
                 latitude: 39.97647153065555,
                 longitude: 116.29967273616768,
-                latitudeDelta: 0.004,
-                longitudeDelta: 0.004,
+                latitudeDelta: 0.004858,
+                longitudeDelta: 0.004858,
             }
         }
     }
