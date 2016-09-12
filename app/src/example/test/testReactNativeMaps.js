@@ -5,10 +5,7 @@ import {Text, View, AsyncStorage, MapView} from 'react-native'
 import _ from 'lodash'
 import Btn from '../../../component/Btn'
 import Geo from './testGeolocation'
-var cache = {
-    level: 16,
-    region: {}
-};
+
 
 const LEVEL_DEGREE = {
     0: 360,
@@ -35,6 +32,24 @@ const LEVEL_DEGREE = {
 };
 //Degree=0.0005时， BASE_M_PIXEL=0.298 m/px为基础进行计算
 const BASE_M_PIXEL = 0.298;
+const BASE_PX_WIDTH = 60;
+const BASE_LEVEL = 16;
+var cache = {
+    level: BASE_LEVEL,
+    region: {}
+};
+const _util = {
+    formatScale: (distance) => {
+        let ans = distance + '米';
+        if(distance > 1000) {
+            ans = Math.round(distance / 1000 * 10) / 10 + '公里'
+        }
+        return ans;
+    },
+    getScale: (level) => {
+        return _util.formatScale(Math.round(LEVEL_DEGREE[level] / LEVEL_DEGREE[19] * BASE_M_PIXEL * BASE_PX_WIDTH));
+    }
+}
 export default class RNMapViews extends Component {
     constructor(props) {
         super(props)
@@ -45,7 +60,8 @@ export default class RNMapViews extends Component {
                 latitudeDelta: 0.004858,
                 longitudeDelta: 0.004858,
             },
-            level: 16
+            level: 16,
+            scale: _util.getScale(cache.level)
         }
     }
     _onRegionChangeComplete(region) {
@@ -68,11 +84,13 @@ export default class RNMapViews extends Component {
     _zoomViaLevel(action) {
         let region = _.assign({}, cache.region);
         cache.level = action == 'in' ? Math.ceil(cache.level) : Math.floor(cache.level);
-        this.setState({
-            level: cache.level
-        });
+
         region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
-        this.setState({region});
+        this.setState({
+            region,
+            level: cache.level,
+            scale: _util.getScale(cache.level)
+        });
     }
     _zoomIn() {
         cache.level = this._getLevel();
@@ -107,10 +125,14 @@ export default class RNMapViews extends Component {
                 let curRegion = {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
+                    latitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
+                    longitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
                 }
 
                 this.setState({
-                    region: _.assign(region, curRegion)
+                    region: _.assign(region, curRegion),
+                    level: BASE_LEVEL,
+                    scale: _util.getScale(BASE_LEVEL)
                 });
             },
             (error) => alert(error.message),
@@ -159,12 +181,12 @@ export default class RNMapViews extends Component {
                         </Btn>
                       </View>
                       <View >
-                        <View style={{width: 60}}>
-                         <Text style={{textAlign: 'center'}}>
-                         200米
+                        <View style={{width: BASE_PX_WIDTH}}>
+                         <Text style={{textAlign: 'center', fontSize: 10}}>
+                            {this.state.scale}
                          </Text>
                         </View>
-                        <View style={{borderBottomWidth: 1, borderBottomColor: 'black', width: 60}}></View>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: 'black', width: BASE_PX_WIDTH}}></View>
                       </View>
                   </View>
             </View>
