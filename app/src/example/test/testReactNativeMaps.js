@@ -60,7 +60,7 @@ export default class RNMapViews extends Component {
                 latitudeDelta: 0.004858,
                 longitudeDelta: 0.004858,
             },
-            level: 16,
+            level: BASE_LEVEL,
             scale: _util.getScale(cache.level)
         }
     }
