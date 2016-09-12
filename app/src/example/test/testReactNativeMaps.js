@@ -33,6 +33,7 @@ const LEVEL_DEGREE = {
     19: 0.0005,
     20: 0
 };
+//Degree=0.0005时， BASE_M_PIXEL=0.298 m/px为基础进行计算
 const BASE_M_PIXEL = 0.298;
 export default class RNMapViews extends Component {
     constructor(props) {
@@ -43,7 +44,8 @@ export default class RNMapViews extends Component {
                 longitude: 116.29967273616768,
                 latitudeDelta: 0.004858,
                 longitudeDelta: 0.004858,
-            }
+            },
+            level: 16
         }
     }
     _onRegionChangeComplete(region) {
@@ -66,6 +68,9 @@ export default class RNMapViews extends Component {
     _zoomViaLevel(action) {
         let region = _.assign({}, cache.region);
         cache.level = action == 'in' ? Math.ceil(cache.level) : Math.floor(cache.level);
+        this.setState({
+            level: cache.level
+        });
         region.latitudeDelta = region.longitudeDelta = LEVEL_DEGREE[cache.level];
         this.setState({region});
     }
@@ -73,14 +78,14 @@ export default class RNMapViews extends Component {
         cache.level = this._getLevel();
         if(cache.level > 1){
             cache.level -= 1;
-            this._zoomViaLevel('in');
+            this._zoomViaLevel();
         }
     }
     _zoomOut() {
         cache.level = this._getLevel();
         if(cache.level < 19) {
             cache.level += 1;
-            this._zoomViaLevel('out');
+            this._zoomViaLevel();
         }
     }
     _showCurrentPosition() {
@@ -144,14 +149,22 @@ export default class RNMapViews extends Component {
                         </Btn>
                       </View>
                       <View>
-                        <Btn onPress={this._zoomOut.bind(this)}>
+                        <Btn onPress={this._zoomOut.bind(this)} disabled={this.state.level == 19}>
                             大
                         </Btn>
                       </View>
                       <View>
-                        <Btn onPress={this._zoomIn.bind(this)}>
+                        <Btn onPress={this._zoomIn.bind(this)} disabled={this.state.level == 1}>
                             小
                         </Btn>
+                      </View>
+                      <View >
+                        <View style={{width: 60}}>
+                         <Text style={{textAlign: 'center'}}>
+                         200米
+                         </Text>
+                        </View>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: 'black', width: 60}}></View>
                       </View>
                   </View>
             </View>
