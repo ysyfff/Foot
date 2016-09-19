@@ -33,7 +33,7 @@ const LEVEL_DEGREE = {
 //Degree=0.0005时， BASE_M_PIXEL=0.298 m/px为基础进行计算
 const BASE_M_PIXEL = 0.298;
 const BASE_PX_WIDTH = 60;
-const BASE_LEVEL = 16;
+const BASE_LEVEL = 15;
 var cache = {
     level: BASE_LEVEL,
     region: {}
@@ -46,8 +46,9 @@ const _util = {
         }
         return ans;
     },
-    getScale: (level) => {
-        return _util.formatScale(Math.round(LEVEL_DEGREE[level] / LEVEL_DEGREE[19] * BASE_M_PIXEL * BASE_PX_WIDTH));
+    getScale: (val, type : '1:use level | 2: use degree') => {
+        var degree = type == 1 ? LEVEL_DEGREE[val] : val;
+        return _util.formatScale(Math.round(degree / LEVEL_DEGREE[19] * BASE_M_PIXEL * BASE_PX_WIDTH));
     }
 }
 export default class RNMapViews extends Component {
@@ -61,13 +62,17 @@ export default class RNMapViews extends Component {
                 longitudeDelta: 0.004858,
             },
             level: BASE_LEVEL,
-            scale: _util.getScale(cache.level)
+            scale: _util.getScale(cache.level, 1)
         }
     }
     _onRegionChangeComplete(region) {
         // debugger
         // this.setState({region})
+        console.log('regionChange')
         cache.region = _.assign({}, region);
+        this.setState({
+            scale: _util.getScale(cache.region.latitudeDelta, 2)
+        })
     }
     _getLevel() {
         let latitudeDelta = this.state.region.latitudeDelta;
@@ -89,7 +94,7 @@ export default class RNMapViews extends Component {
         this.setState({
             region,
             level: cache.level,
-            scale: _util.getScale(cache.level)
+            scale: _util.getScale(cache.level, 1)
         });
     }
     _zoomIn() {
@@ -121,18 +126,17 @@ export default class RNMapViews extends Component {
         // }
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                let region = _.assign({}, this.state.region);
                 let curRegion = {
                     latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
+                    longitude: position.coords.longitude + 0.006,
                     latitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
                     longitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
                 }
-
+                
                 this.setState({
-                    region: _.assign(region, curRegion),
+                    region: curRegion,
                     level: BASE_LEVEL,
-                    scale: _util.getScale(BASE_LEVEL)
+                    scale: _util.getScale(BASE_LEVEL, 1)
                 });
             },
             (error) => alert(error.message),
