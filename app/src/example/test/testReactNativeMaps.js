@@ -4,7 +4,7 @@ import {Text, View, AsyncStorage, MapView} from 'react-native'
 // import MapView from 'react-native-maps'
 import _ from 'lodash'
 import Btn from '../../../component/Btn'
-import Geo from './testGeolocation'
+import {store} from './util';
 
 
 const LEVEL_DEGREE = {
@@ -49,8 +49,10 @@ const _util = {
     getScale: (val, type : '1:use level | 2: use degree') => {
         var degree = type == 1 ? LEVEL_DEGREE[val] : val;
         return _util.formatScale(Math.round(degree / LEVEL_DEGREE[19] * BASE_M_PIXEL * BASE_PX_WIDTH));
-    }
+    },
+
 }
+
 export default class RNMapViews extends Component {
     constructor(props) {
         super(props)
@@ -65,15 +67,33 @@ export default class RNMapViews extends Component {
             scale: _util.getScale(cache.level, 1)
         }
     }
+    componentDidMount() {
+        this._setToCurrentPosition();
+        navigator.geolocation.watchPosition(
+            (position) => {
+                console.log('posiition: ---' + JSON.stringify(position.coords));
+                store.setPoint(new Date(), position.coords);
+                store.getPoint(new Date(), (res) => {
+                    console.log('stored: ---' + JSON.stringify(res));
+                });
+            },
+            (error) => {
+                console.log('watchPosition ERROR: ' + error)
+            },
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
+    }
+
+    //地图改变完成后的回调，包括缩小放大、地图移动等
     _onRegionChangeComplete(region) {
         // debugger
         // this.setState({region})
-        console.log('regionChange')
         cache.region = _.assign({}, region);
         this.setState({
             scale: _util.getScale(cache.region.latitudeDelta, 2)
         })
     }
+    //手势缩小放大地图的时候，获取下次缩小放大的level值
     _getLevel() {
         let latitudeDelta = this.state.region.latitudeDelta;
         let level = 1;
@@ -86,6 +106,7 @@ export default class RNMapViews extends Component {
         });
         return level;
     }
+    //通过level进行放大缩小
     _zoomViaLevel(action) {
         let region = _.assign({}, cache.region);
         cache.level = action == 'in' ? Math.ceil(cache.level) : Math.floor(cache.level);
@@ -97,6 +118,7 @@ export default class RNMapViews extends Component {
             scale: _util.getScale(cache.level, 1)
         });
     }
+    //缩小
     _zoomIn() {
         cache.level = this._getLevel();
         if(cache.level > 1){
@@ -104,6 +126,7 @@ export default class RNMapViews extends Component {
             this._zoomViaLevel();
         }
     }
+    //放大
     _zoomOut() {
         cache.level = this._getLevel();
         if(cache.level < 19) {
@@ -111,7 +134,11 @@ export default class RNMapViews extends Component {
             this._zoomViaLevel();
         }
     }
-    _showCurrentPosition() {
+    _recordPosition() {
+
+    }
+    //我的位置展示在屏幕中间
+    _setToCurrentPosition() {
         // position = {
         //     coords: {
         //         speed: '-1',
@@ -132,7 +159,7 @@ export default class RNMapViews extends Component {
                     latitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
                     longitudeDelta: LEVEL_DEGREE[BASE_LEVEL],
                 }
-                
+
                 this.setState({
                     region: curRegion,
                     level: BASE_LEVEL,
@@ -170,7 +197,7 @@ export default class RNMapViews extends Component {
                   />
                   <View style={{position: 'absolute', bottom: 100}}>
                       <View>
-                        <Btn onPress={this._showCurrentPosition.bind(this)}>
+                        <Btn onPress={this._setToCurrentPosition.bind(this)}>
                             位
                         </Btn>
                       </View>
