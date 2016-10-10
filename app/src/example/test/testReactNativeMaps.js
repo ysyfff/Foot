@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, View, AsyncStorage, MapView} from 'react-native'
+import {Text, View, AsyncStorage, MapView, StyleSheet} from 'react-native'
 // import MapView from 'react-native-maps'
 // import MapView from 'react-native-maps'
 import _ from 'lodash'
@@ -197,17 +197,17 @@ export default class RNMapViews extends Component {
                   />
                   <View style={{position: 'absolute', bottom: 100}}>
                       <View>
-                        <Btn onPress={this._setToCurrentPosition.bind(this)}>
+                        <Btn onPress={this._setToCurrentPosition.bind(this)} style={style.btn}>
                             位
                         </Btn>
                       </View>
                       <View>
-                        <Btn onPress={this._zoomOut.bind(this)} disabled={this.state.level == 19}>
+                        <Btn onPress={this._zoomOut.bind(this)} disabled={this.state.level == 19} style={style.btn}>
                             大
                         </Btn>
                       </View>
                       <View>
-                        <Btn onPress={this._zoomIn.bind(this)} disabled={this.state.level == 1}>
+                        <Btn onPress={this._zoomIn.bind(this)} disabled={this.state.level == 1} style={style.btn}>
                             小
                         </Btn>
                       </View>
@@ -224,3 +224,10 @@ export default class RNMapViews extends Component {
         )
     }
 }
+
+const style = StyleSheet.create({
+    btn: {
+        marginTop: 0,
+        marginBottom: 1,        
+    }
+})
