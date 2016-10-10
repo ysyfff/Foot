@@ -54,7 +54,7 @@ const style = StyleSheet.create({
         paddingRight: 10,
         paddingBottom: 8,
         paddingLeft: 10,
-        borderRadius: 999, //设置的足够大，确保是圆角
+        borderRadius: 0, //设置的足够大，确保是圆角
         marginTop: 5,
         marginRight: 10,
         marginBottom: 5,
