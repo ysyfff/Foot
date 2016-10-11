@@ -39,4 +39,21 @@ usemathjax: yes 启用MathJax渲染公式
 
 
 [slide]
-vkontext
+## 谈谈JSX
+* 见识JSX
+  * ```/navigator/PathNav.js```
+* 见识Props
+
+
+
+[slide]
+## 谈谈State
+* State强大吗？
+  * ```/user/info/basic/Basic.js```
+
+
+
+[slide]
+## 谈谈Component
+* 写Component如此简单
+* [Component生命周期](https://github.com/ysyfff/Foot#lifecycle)

@@ -13,16 +13,13 @@ export default class Basic extends Component {
         // this.disableRight = this.disableRight.bind(this)
     }
     disableRight() {
-        this.setState({disableRight: true})
+        this.setState({disableRight: !this.state.disableRight})
     }
     render() {
         return (
             <ViewContainer>
                 <Btn style={[{backgroundColor: 'red'}]}
-                    disabled={this.state.disableRight} onPress={() => {
-                        this.disableRight.bind(this)(), console.log('nooo')
-                    }
-                    }>
+                    disabled={this.state.disableRight} onPress={() => this.disableRight.bind(this)()}>
                     Right
                 </Btn>
                 <Btn type="highlight" activeOpacity={0.2}>
@@ -34,7 +31,7 @@ export default class Basic extends Component {
                         </Btn>
                         <View style={{flex: 1}}>
                         </View>
-                        <Btn type="opacity" bg="pink" c="black" style={{width: 100 }}>
+                        <Btn type="opacity" bg="pink" c="black" style={{width: 100 }} onPress={() => this.disableRight.bind(this)()}>
                             Cancel
                         </Btn>
                 </View>

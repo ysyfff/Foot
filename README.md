@@ -2,8 +2,8 @@
 
 ## Base
 ### LifeCycle
+![image](./doc/life2.jpg)
 * `componentWillMount`         准备加载组件
-* `componentDidMount`          在组件第一次绘制之后
 * `componentDidMount`          在组件第一次绘制之后
 * `componentWillReceiveProps`  如果组件收到新的属性（props）
 * `shouldComponentUpdate`      当组件接收到新的属性和状态改变的话，都会触发调用
