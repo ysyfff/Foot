@@ -5,3 +5,10 @@ h2 {
 a {
     color: #fff;
 }
+img {
+    height: 300px;
+    width: 400px;
+}
+ul ul{
+    margin-top: 0;
+}

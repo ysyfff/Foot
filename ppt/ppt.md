@@ -39,11 +39,12 @@ usemathjax: yes 启用MathJax渲染公式
 
 
 [slide]
-## 谈谈JSX
-* 见识JSX
-  * ```/navigator/PathNav.js```
-* 见识Props
+## Component
+* component的结构
 
+* component的生命周期
+  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/life2.jpg)
+  * ```/navigator/PathNav.js```
 
 
 [slide]
@@ -57,3 +58,4 @@ usemathjax: yes 启用MathJax渲染公式
 ## 谈谈Component
 * 写Component如此简单
 * [Component生命周期](https://github.com/ysyfff/Foot#lifecycle)
+<br />
