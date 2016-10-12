@@ -39,23 +39,26 @@ usemathjax: yes 启用MathJax渲染公式
 
 
 [slide]
+## 一些常用的Base Component
+* [View](http://facebook.github.io/react-native/docs/view.html#view) ——> div
+* [Text](http://facebook.github.io/react-native/docs/text.html#text) ——> span
+* [TextInput](http://facebook.github.io/react-native/docs/textinput.html#textinput) ——> input
+* [TouchableOpacity](http://facebook.github.io/react-native/docs/touchableopacity.html#touchableopacity) | [TouchableHighlight](http://facebook.github.io/react-native/docs/touchablehighlight.html#touchablehighlight) ——> button
+* [image](http://facebook.github.io/react-native/docs/image.html#image) ——> img
+
+
+
+[slide]
 ## Component
 * component的结构
-
-* component的生命周期
+  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/component.jpg)
+* [component生命周期](https://github.com/ysyfff/Foot#lifecycle)
   * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/life2.jpg)
-  * ```/navigator/PathNav.js```
 
 
 [slide]
-## 谈谈State
-* State强大吗？
-  * ```/user/info/basic/Basic.js```
-
-
-
-[slide]
-## 谈谈Component
-* 写Component如此简单
-* [Component生命周期](https://github.com/ysyfff/Foot#lifecycle)
-<br />
+## Flexbox
+* [flexDirection](http://sources.ikeepstudying.com/flexbox/flex-direction.html)
+* [justifyContent](http://sources.ikeepstudying.com/flexbox/justify-content.html)
+* [alignItems](http://sources.ikeepstudying.com/flexbox/align-items.html)
+* [flexWrap](http://sources.ikeepstudying.com/flexbox/flex-wrap.html)

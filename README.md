@@ -40,6 +40,16 @@
   * Answer:
     * 按照官网教程一步一步来做没有问题，但是如果网络很慢呢？
 
+* 如何部署到app store?
+  * Answer:
+
+* 热更新部署?
+  * Answer:
+    * 使用CodePush
+      * CodePush安装：```npm install -g code-push-cli```
+      * 创建CodePush账号：```code-push register```
+      * 登陆：```code-push login```
+      * 安装CodePush到App：```npm install react-native-code-push --save``` ```rnpm link react-native-code-push```
 ===
 
 ### Higher
