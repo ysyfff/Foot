@@ -7,6 +7,7 @@ import Skin from '../common/Skin'
 import PathTabBar from '../tabbar/PathTabBar'
 import Basic from '../user/info/basic/Basic'
 import History from '../user/info/history/History'
+import Walk from '../user/info/walk/Walk'
 import If from '../../component/If'
 
 export default class PathNav extends Component {
@@ -89,6 +90,25 @@ export default class PathNav extends Component {
                             RightButton: '',
                             Title: (
                                 <Text style={{fontSize: 18}}>历史记录</Text>
+                            )
+                        },
+                        style: {backgroundColor: 'gray'}
+                    }
+                },
+                'Myself.walkInfo': {
+                    renderScene: function(route, navigators) {
+                        return (<Walk />)
+                    },
+                    NavBar: {
+                        routeMapper: {
+                            LeftButton: (
+                                <View style={{flex: 1, flexDirection: 'row', alignItems:"center", paddingLeft: 15, paddingRight: 10, paddingTop: 10, paddingBottom: 10}}>
+                                    <Icon name="angle-left" color="black" size={26} />
+                                </View>
+                            ),
+                            RightButton: '',
+                            Title: (
+                                <Text style={{fontSize: 18}}>步行记录</Text>
                             )
                         },
                         style: {backgroundColor: 'gray'}

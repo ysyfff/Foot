@@ -43,7 +43,7 @@
 * 如何部署到app store?
   * Answer:
 
-* 热更新部署?
+* [热更新部署](http://www.jianshu.com/p/9e3b4a133bcc)
   * Answer:
     * 使用CodePush
       * CodePush安装：```npm install -g code-push-cli```

@@ -90,6 +90,11 @@ export default class Info extends Component {
                                 custom: {
                                     style: {color: Skin.baseColor}
                                 }
+                            },
+                            onPress: (event) => {
+                                me.props.navigators.push({
+                                    ident: 'Myself.walkInfo'
+                                })
                             }
                         }
                     },{
