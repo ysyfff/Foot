@@ -4,6 +4,7 @@ import {View, Text, StyleSheet, MapView} from 'react-native'
 import ViewContainer from '../../../common/ViewContainer'
 import Skin from '../../../common/Skin'
 import RNMapViews from '../../../example/test/testReactNativeMaps'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class Walk extends Component {
     constructor(props) {
@@ -14,7 +15,20 @@ export default class Walk extends Component {
             <ViewContainer>
                 <View style={style.container}>
                     <View style={style.text}>
-                        <Text>Date</Text>
+                        <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
+                                <View style={{marginRight: 5}}><Icon name="map-marker" color="dodgerblue" size={18} /></View>
+                                <Text style={style.font}>北京</Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
+                                <View style={{marginRight: 5}}><Icon name="location-arrow" color="dodgerblue" size={18} /></View>
+                                <Text style={style.font}>2km</Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', flex: 2, justifyContent: 'center'}}>
+                                <View style={{marginRight: 5}}><Icon name="clock-o" color="dodgerblue" size={18} /></View>
+                                <Text style={style.font}>2016-07-04</Text>
+                        </View>
                     </View>
                     <View style={style.map}>
                         <MapView
@@ -39,12 +53,16 @@ const style = StyleSheet.create({
         backgroundColor: Skin.backgroundColor
     },
     text: {
+        flexDirection: 'row',
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 8,
         paddingRight: 8,
         borderBottomWidth: 1,
         borderBottomColor: Skin.baseColor
+    },
+    font: {
+        fontSize: 14,
     },
     map: {
         flex: 1,

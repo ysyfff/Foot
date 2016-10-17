@@ -58,7 +58,7 @@ usemathjax: yes 启用MathJax渲染公式
 
 [slide]
 ## Flexbox
-* [flexDirection](http://sources.ikeepstudying.com/flexbox/flex-direction.html)
+* [flexDirection](http://sources.ikeepstudying.com/flexbox/flex-direction.html) (Flex布局中不存在block,inlineblock,inline等display属性)
 * [justifyContent](http://sources.ikeepstudying.com/flexbox/justify-content.html)
 * [alignItems](http://sources.ikeepstudying.com/flexbox/align-items.html)
 * [flexWrap](http://sources.ikeepstudying.com/flexbox/flex-wrap.html)
