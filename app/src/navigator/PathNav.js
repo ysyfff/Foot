@@ -23,7 +23,7 @@ export default class PathNav extends Component {
     render() {
         let me = this;
         const NavDataSource = {
-            initialRoute: 'Map',
+            initialRoute: 'Myself',
             route: {
                 Myself: {
                     renderScene: function(route, navigators) {
