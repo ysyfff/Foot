@@ -1,49 +1,111 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, MapView} from 'react-native'
+import {View, Text, StyleSheet, MapView, TouchableOpacity} from 'react-native'
 
 import ViewContainer from '../../../common/ViewContainer'
 import Skin from '../../../common/Skin'
 import RNMapViews from '../../../example/test/testReactNativeMaps'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Btn from '../../../../component/Btn'
+import If from '../../../../component/If'
+import _ from 'lodash'
 
 export default class Walk extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            dataSource: [
+
+            ],
+        }
+    }
+    componentDidMount() {
+        let dataSource = [
+            {
+                place: '北京',
+                date: '2016-10-18',
+                distance: '2KM'
+            },
+            {
+                place: '上海',
+                date: '2016-10-18',
+                distance: '2KM'
+            },
+            {
+                place: '南京',
+                date: '2016-10-18',
+                distance: '2KM'
+            }
+        ];
+
+        //给数据增加show属性
+        dataSource.map((item, i) => {
+            item.show = false;
+        });
+
+        this.setState({
+            dataSource: dataSource
+        })
     }
     render() {
-        return (
-            <ViewContainer>
-                <View style={style.container}>
-                    <View style={style.text} onPress={() => {console.log('press the view')}}>
-                        <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="map-marker" color="#333" size={18} /></View>
-                                <Text style={style.font}>北京</Text>
-                        </View>
 
-                        <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="location-arrow" color="#333" size={18} /></View>
-                                <Text style={style.font}>2km</Text>
-                        </View>
 
-                        <View style={{flexDirection: 'row', flex: 2, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="clock-o" color="#333" size={18} /></View>
-                                <Text style={style.font}>2016-07-04</Text>
-                        </View>
+        let createItem = (item, i) => {
 
-                        <View style={{flexDirection: 'row', width: 30,  justifyContent: 'center'}}>
-                            <Icon name="angle-double-down" color="dodgerblue" size={18} />
+            return (
+                <View style={style.container} key={i}>
+                    <TouchableOpacity onPress={
+                            (event) => {
+
+                                let list = _.concat(this.state.dataSource);
+
+                                list.map((item, j) => {
+                                    item.show = i == j ? !item.show : false;
+                                });
+
+                                this.setState({
+                                    dataSource: list
+                                });
+                            }
+                        }>
+                        <View style={style.text}>
+                            <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
+                                    <View style={{marginRight: 5}}><Icon name="map-marker" color="#333" size={18} /></View>
+                                    <Text style={style.font}>{item.place}</Text>
+                            </View>
+
+                            <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
+                                    <View style={{marginRight: 5}}><Icon name="location-arrow" color="#333" size={18} /></View>
+                                    <Text style={style.font}>{item.distance}</Text>
+                            </View>
+
+                            <View style={{flexDirection: 'row', flex: 2, justifyContent: 'center'}}>
+                                    <View style={{marginRight: 5}}><Icon name="clock-o" color="#333" size={18} /></View>
+                                    <Text style={style.font}>{item.date}</Text>
+                            </View>
+
+                            <View style={{flexDirection: 'row', width: 30,  justifyContent: 'center'}}>
+                                <If v={this.state.dataSource[i].show}>
+                                    <Icon name="angle-double-down" color="dodgerblue" size={18} />
+                                </If>
+                                <If v={!this.state.dataSource[i].show}>
+                                    <Icon name="angle-double-up" color="dodgerblue" size={18} />
+                                </If>
+                            </View>
                         </View>
-                    </View>
-                    <View style={style.map}>
+                    </TouchableOpacity>
+                    <If v={this.state.dataSource[i].show}>
                         <MapView
-                            style={{flex: 1}}
+                            style={{flex: 1, height: 120}}
                             showsUserLocation={true}
                             followsUserLocation={true}
                         />
-                    </View>
+                    </If>
                 </View>
+            )
+        };
 
+        return (
+            <ViewContainer>
+                {this.state.dataSource.map(createItem)}
             </ViewContainer>
         )
     }
