@@ -5,6 +5,7 @@ import ViewContainer from '../../../common/ViewContainer'
 import Skin from '../../../common/Skin'
 import RNMapViews from '../../../example/test/testReactNativeMaps'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Btn from '../../../../component/Btn'
 
 export default class Walk extends Component {
     constructor(props) {
@@ -14,20 +15,24 @@ export default class Walk extends Component {
         return (
             <ViewContainer>
                 <View style={style.container}>
-                    <View style={style.text}>
+                    <View style={style.text} onPress={() => {console.log('press the view')}}>
                         <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="map-marker" color="dodgerblue" size={18} /></View>
+                                <View style={{marginRight: 5}}><Icon name="map-marker" color="#333" size={18} /></View>
                                 <Text style={style.font}>北京</Text>
                         </View>
 
                         <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="location-arrow" color="dodgerblue" size={18} /></View>
+                                <View style={{marginRight: 5}}><Icon name="location-arrow" color="#333" size={18} /></View>
                                 <Text style={style.font}>2km</Text>
                         </View>
 
                         <View style={{flexDirection: 'row', flex: 2, justifyContent: 'center'}}>
-                                <View style={{marginRight: 5}}><Icon name="clock-o" color="dodgerblue" size={18} /></View>
+                                <View style={{marginRight: 5}}><Icon name="clock-o" color="#333" size={18} /></View>
                                 <Text style={style.font}>2016-07-04</Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', width: 30,  justifyContent: 'center'}}>
+                            <Icon name="angle-double-down" color="dodgerblue" size={18} />
                         </View>
                     </View>
                     <View style={style.map}>
@@ -38,6 +43,7 @@ export default class Walk extends Component {
                         />
                     </View>
                 </View>
+
             </ViewContainer>
         )
     }
