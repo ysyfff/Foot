@@ -54,15 +54,14 @@ export default class Walk extends Component {
                 <View style={style.container} key={i}>
                     <TouchableOpacity onPress={
                             (event) => {
-
-                                let list = _.concat(this.state.dataSource);
-
-                                list.map((item, j) => {
-                                    item.show = i == j ? !item.show : false;
-                                });
-
-                                this.setState({
-                                    dataSource: list
+                                //setState还可以接收函数参数
+                                this.setState((prevState, currProps) => {
+                                    prevState.dataSource.map((item, j) => {
+                                        item.show = i == j ? !item.show : false;
+                                    });
+                                    return {
+                                        dataSource: prevState.dataSource
+                                    }
                                 });
                             }
                         }>

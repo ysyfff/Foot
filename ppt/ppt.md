@@ -57,8 +57,17 @@ usemathjax: yes 启用MathJax渲染公式
 
 
 [slide]
-## Flexbox
-* [flexDirection](http://sources.ikeepstudying.com/flexbox/flex-direction.html) (Flex布局中不存在block,inlineblock,inline等display属性)
+## 思维转变之布局篇——Flexbox
+React Native布局中不存在block,inlineblock,inline等display属性 <br/><br/>
+Flex布局常用属性:
+* [flexDirection](http://sources.ikeepstudying.com/flexbox/flex-direction.html)
 * [justifyContent](http://sources.ikeepstudying.com/flexbox/justify-content.html)
 * [alignItems](http://sources.ikeepstudying.com/flexbox/align-items.html)
 * [flexWrap](http://sources.ikeepstudying.com/flexbox/flex-wrap.html)
+
+
+[slide]
+## 思维转变之逻辑篇——JSX
+* 标签中不存在If和For，如何处理逻辑和数组数据？
+* [标签中不存在class和id，如何获取元素？](https://facebook.github.io/react/docs/more-about-refs.html)
+* 如何将props的属性全部挂到Component上面？
