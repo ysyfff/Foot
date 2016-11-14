@@ -18,7 +18,7 @@ usemathjax: yes 启用MathJax渲染公式
 
 [slide]
 ## 提纲
-* OC简介
+* IOS开发简介
 * ES6几个点
 * React Native
   * Component
@@ -30,11 +30,15 @@ usemathjax: yes 启用MathJax渲染公式
 
 
 [slide]
-## Objective-C简介
+## IOS开发简介
+* Objective-C语法
+  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/header.jpg)
+  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/m.jpg)
+* 学习大纲
+  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/ios_study.jpg)
+* [API Reference](https://developer.apple.com/reference/)
 
-[slide]
-## Objective-C学习大纲
-![image](./doc/ios_study.jpg)
+
 [slide]
 ## 一些常用的ES6功能
 * 声明变量的方法
