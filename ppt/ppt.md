@@ -16,11 +16,27 @@ usemathjax: yes 启用MathJax渲染公式
 * 尹士勇
 * 2016.10.09
 
+[slide]
+## 提纲
+* OC简介
+* ES6几个点
+* React Native
+  * Component
+  * Flexbox
+  * JSX
+  * Native modules
+  * Dynamic update
+  * Deployment
 
 
 [slide]
-## 一些常用的ES6功能
+## Objective-C简介
 
+[slide]
+## Objective-C学习大纲
+![image](./doc/ios_study.jpg)
+[slide]
+## 一些常用的ES6功能
 * 声明变量的方法
   * [let](http://es6.ruanyifeng.com/#docs/let#let命令)
   * [const](http://es6.ruanyifeng.com/#docs/let#const命令)
@@ -35,6 +51,9 @@ usemathjax: yes 启用MathJax渲染公式
 * [ES6模块系统](http://es6.ruanyifeng.com/#docs/module#export命令)
 
 * [语法糖——类](http://es6.ruanyifeng.com/#docs/class#Class基本语法)
+
+
+
 
 
 
@@ -71,3 +90,15 @@ Flex布局常用属性:
 * 标签中不存在If和For，如何处理逻辑和数组数据？
 * [标签中不存在class和id，如何获取元素？](https://facebook.github.io/react/docs/more-about-refs.html)
 * 如何将props的属性全部挂到Component上面？
+
+
+[slide]
+##Native modules
+*
+
+[slide]
+## 发布
+* 必备品
+  * Account，Mac，xCode
+* 步骤
+  * 1

@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import {AppRegistry, Navigator, Text, TouchableHighlight, View} from 'react-native'
-
+import codePush from 'react-native-code-push'
 
 
 import NavAllDay from './app/src/example/test/testNavigator'
@@ -12,6 +12,9 @@ import PathNav from './app/src/navigator/PathNav'
 import TabBarExample from './app/src/example/test/testTabBarIOS'
 
 class Foot extends Component {
+    componentDidMount() {
+        console.log(codePush)
+    }
     render() {
         return (<PathNav />)
         // return (<TabBarExample />)
