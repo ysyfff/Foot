@@ -32,8 +32,13 @@ usemathjax: yes 启用MathJax渲染公式
 [slide]
 ## IOS开发简介
 * Objective-C语法
-  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/header.jpg)
-  * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/m.jpg)
+  * ```
+     #import <Foundation/Foundation.h>
+     @interface Person : NSObject
+     @property NSString *firstName;
+     -(void)selfIntroduction:(NSString *)name age:(int) age;
+     @end
+    ```
 * 学习大纲
   * ![image](https://raw.githubusercontent.com/ysyfff/Foot/master/doc/ios_study.jpg)
 * [API Reference](https://developer.apple.com/reference/)
